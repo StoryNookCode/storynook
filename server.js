@@ -7,10 +7,6 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
-
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'StoryNook server is running' });
@@ -19,6 +15,10 @@ app.get('/health', (req, res) => {
 // Story generation
 app.post('/generate-story', async (req, res) => {
   const { childName, childAge, interests } = req.body;
+
+  const anthropic = new Anthropic({
+    apiKey: process.env.ANTHROPIC_API_KEY,
+  });
 
   try {
     const message = await anthropic.messages.create({
@@ -47,8 +47,8 @@ Return ONLY a JSON object in this exact format, nothing else:
     });
 
     const storyText = message.content[0].text;
-const cleanText = storyText.replace(/```json\n?|\n?```/g, '').trim();
-const story = JSON.parse(cleanText);
+    const cleanText = storyText.replace(/```json\n?|\n?```/g, '').trim();
+    const story = JSON.parse(cleanText);
 
     res.json({ success: true, story });
 
