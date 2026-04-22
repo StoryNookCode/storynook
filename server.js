@@ -9,7 +9,11 @@ app.use(express.json());
 
 // Health check
 app.get('/health', (req, res) => {
-  res.json({ status: 'StoryNook server is running' });
+  res.json({ 
+    status: 'StoryNook server is running',
+    hasAnthropicKey: !!process.env.ANTHROPIC_API_KEY,
+    keyPrefix: process.env.ANTHROPIC_API_KEY ? process.env.ANTHROPIC_API_KEY.substring(0, 10) : 'not set'
+  });
 });
 
 // Story generation
