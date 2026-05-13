@@ -15,6 +15,7 @@ const anthropic = new Anthropic({
 
 function getStoryTemplate(childName, gender, occasion, mumName, interests) {
 
+  // Gender logic
   const pronounHe    = gender === 'girl' ? 'she' : gender === 'neutral' ? 'they' : 'he';
   const pronounHis   = gender === 'girl' ? 'her' : gender === 'neutral' ? 'their' : 'his';
   const pronounHim   = gender === 'girl' ? 'her' : gender === 'neutral' ? 'them' : 'him';
@@ -22,8 +23,10 @@ function getStoryTemplate(childName, gender, occasion, mumName, interests) {
   const mummyChild   = gender === 'girl' ? "mummy's little girl" : gender === 'neutral' ? "mummy's little treasure" : "mummy's little boy";
   const coverSubtitle = `A ${childType}'s letters to the magical people in the world.`;
 
-  const occasionLine = occasion === 'birthday' ? 'So Happy Birthday Mummy!' : "So mummy, Happy Mother's Day!";
+  // Occasion logic
+  const occasionLine = occasion === 'birthday' ? 'So Happy Birthday Mummy!' : 'So mummy, Happy Mother\'s Day!';
 
+  // Mum's name (default to 'Mum' if not provided)
   const mum = mumName || 'Mum';
 
   return {
@@ -32,42 +35,144 @@ function getStoryTemplate(childName, gender, occasion, mumName, interests) {
       {
         pageNumber: 1,
         recipient: 'Dear Santa,',
-        text: `I think my mum has magic powers.\nShe knows me inside out.\nBefore I've even asked a question,\nMum knows what it's about.\n\nI think my mum has magic powers.\nI'm really still in awe.\nFor you I have to write a list,\nBut mum just knows it all.\n\nFrom your merry little elf,\n${childName}`
+        text: `I think my mum has magic powers.
+She knows me inside out.
+Before I've even asked a question,
+Mum knows what it's about.
+
+I think my mum has magic powers.
+I'm really still in awe.
+For you I have to write a list,
+But mum just knows it all.
+
+From your merry little elf,
+${childName}`
       },
       {
         pageNumber: 2,
         recipient: 'Dear Tooth Fairy,',
-        text: `I think my mum has magic powers.\nShe helps when I feel sneezy.\nA kiss, a hug, a little laugh,\nThen I'm fine — easy peasy!\n\nI think my mum has magic powers.\nIt sounds crazy but it's true.\nAlthough one thing she could work on,\nIs slipping me a coin or two.\n\nFrom your flossing friend,\n${childName}`
+        text: `I think my mum has magic powers.
+She helps when I feel sneezy.
+A kiss, a hug, a little laugh,
+Then I'm fine — easy peasy!
+
+I think my mum has magic powers.
+It sounds crazy but it's true.
+Although one thing she could work on,
+Is slipping me a coin or two.
+
+From your flossing friend,
+${childName}`
       },
       {
         pageNumber: 3,
         recipient: 'Dear Easter Bunny,',
-        text: `I think my mum has magic powers.\nShe finds my missing stuff.\nMy shoes, my hat, my favourite books,\nFor mum it's easy — for others, tough!\n\nI think my mum has magic powers.\nI can't believe my eyes.\nAt Easter time, when you hide eggs,\nIt's like she's not surprised!\n\nFrom your egg-cellent pal,\n${childName}`
+        text: `I think my mum has magic powers.
+She finds my missing stuff.
+My shoes, my hat, my favourite books,
+For mum it's easy — for others, tough!
+
+I think my mum has magic powers.
+I can't believe my eyes.
+At Easter time, when you hide eggs,
+It's like she's not surprised!
+
+From your egg-cellent pal,
+${childName}`
       },
       {
         pageNumber: 4,
         recipient: 'Dear Fairy Godmother,',
-        text: `I think my mum has magic powers.\nShe makes boring things fun.\nIt's a Rainy Day? No problems!\nBlanket forts, here we come!\n\nI think my mum has magic powers.\nIt's really cool to see.\nYou help out kids in fairy tales,\nBut mum is here with me.\n\nFrom your spellbound student,\n${childName}`
+        text: `I think my mum has magic powers.
+She makes boring things fun.
+It's a Rainy Day? No problems!
+Blanket forts, here we come!
+
+I think my mum has magic powers.
+It's really cool to see.
+You help out kids in fairy tales,
+But mum is here with me.
+
+From your spellbound student,
+${childName}`
       },
       {
         pageNumber: 5,
         recipient: 'Dear Witches and Wizards of the World,',
-        text: `I think my mum has magic powers.\nWhen our fridge is looking bare,\nShe finds a way to cook a feast,\nFrom practically thin air.\n\nI think my mum has magic powers.\nShe cooks most every night.\nLasagna, Tacos, even fish.\nBut ice cream? Not a bite!\n\nFrom your hocus pocus helper,\n${childName}`
+        text: `I think my mum has magic powers.
+When our fridge is looking bare,
+She finds a way to cook a feast,
+From practically thin air.
+
+I think my mum has magic powers.
+She cooks most every night.
+Lasagna, Tacos, even fish.
+But ice cream? Not a bite!
+
+From your hocus pocus helper,
+${childName}`
       },
       {
         pageNumber: 6,
         recipient: 'Dear Santa,',
-        text: `I thought my mum had magic powers.\nBut something's changed, I think.\nI've been watching much more closely,\nBut there's no spell. No trick.\n\nI thought my mum had magic powers.\nBut it's just what mums do.\nThey do it all without much thanks,\nBut that's so unfair too!\n\nPlease turn over →`
+        text: `I thought my mum had magic powers.
+But something's changed, I think.
+I've been watching much more closely,
+But there's no spell. No trick.
+
+I thought my mum had magic powers.
+But it's just what mums do.
+They do it all without much thanks,
+But that's so unfair too!
+
+Please turn over →`
       },
       {
         pageNumber: 7,
         recipient: 'And then it hit me, Santa.',
-        text: `I know my mum's not magic.\nNo wands or potions, no.\nShe has something much more special,\nThat fills me head to toe.\n\nI know my mum's not magic.\nBut she has the biggest heart.\nIt's Ginormous! Humungous! Enormous!\nAnd that's her most amazing part.\n\nFrom this mighty ${mummyChild},\n${childName}`
+        text: `I know my mum's not magic.
+No wands or potions, no.
+She has something much more special,
+That fills me head to toe.
+
+I know my mum's not magic.
+But she has the biggest heart.
+It's Ginormous! Humungous! Enormous!
+And that's her most amazing part.
+
+From this mighty ${mummyChild},
+${childName}`
       },
       {
         pageNumber: 8,
         recipient: `Dear ${mum},`,
-        text: `I've been writing lots of letters,\nI'd write them late at night.\nIt's cause I thought you were magic,\nIt turns out I was right!\n\nYou may not have your potions,\nOr broomsticks, spells or cauldrons,\nBut the things you do are magic mum,\nYou turn dark days bright and golden.\n\nYou help teach me tricky words,\nAnd help teach me to be kind.\nI've learnt so much from your lessons,\nYou don't let me fall behind.\n\nSo when I become a grown up,\nI want to be like you.\nBeing kind, and calm and patient,\nThese are things that you just do.\n\n${occasionLine}\nThanks for being who you are.\nI'll love you now and for forever,\nYou're the bestest mum by far.\n\nLove from your favourite little human,\n${childName} x`
+        text: `I've been writing lots of letters,
+I'd write them late at night.
+It's cause I thought you were magic,
+It turns out I was right!
+
+You may not have your potions,
+Or broomsticks, spells or cauldrons,
+But the things you do are magic mum,
+You turn dark days bright and golden.
+
+You help teach me tricky words,
+And help teach me to be kind.
+I've learnt so much from your lessons,
+You don't let me fall behind.
+
+So when I become a grown up,
+I want to be like you.
+Being kind, and calm and patient,
+These are things that you just do.
+
+${occasionLine}
+Thanks for being who you are.
+I'll love you now and for forever,
+You're the bestest mum by far.
+
+Love from your favourite little human,
+${childName} x`
       }
     ]
   };
@@ -75,6 +180,7 @@ function getStoryTemplate(childName, gender, occasion, mumName, interests) {
 
 // ─── ROUTES ───────────────────────────────────────────────────────────────────
 
+// Health check
 app.get('/health', (req, res) => {
   res.json({
     status: 'StoryNook server is running',
@@ -82,9 +188,11 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Generate personalised story
 app.post('/generate-story', async (req, res) => {
   const { childName, childAge, gender, occasion, mumName, interests } = req.body;
 
+  // Basic validation
   if (!childName || !gender || !occasion) {
     return res.status(400).json({
       success: false,
@@ -93,8 +201,10 @@ app.post('/generate-story', async (req, res) => {
   }
 
   try {
+    // Get the fixed story with personal details swapped in
     const story = getStoryTemplate(childName, gender, occasion, mumName, interests);
 
+    // Use Claude to generate Easter egg illustration prompts
     const message = await anthropic.messages.create({
       model: 'claude-sonnet-4-5',
       max_tokens: 1000,
@@ -105,7 +215,7 @@ app.post('/generate-story', async (req, res) => {
 
 The child's name is ${childName}, age ${childAge}, and their interests are: ${interests}.
 
-The book has 8 illustrated pages. Each illustration should subtly hide 1 of the child's interests as an Easter egg in the background.
+The book has 8 illustrated pages. Each illustration should subtly hide 1 of the child's interests as an Easter egg in the background — something fun for the child to find when reading.
 
 Here are the 8 scenes:
 1. Child writing letter to Santa at Christmas, mum nearby
@@ -115,39 +225,27 @@ Here are the 8 scenes:
 5. Child looking in empty fridge, mum cooking a feast
 6. Child spying on mum from the stairs with binoculars
 7. Collage of all the magical mum moments from the book
-8. Final letter - child drawing a picture for mum
+8. Final letter — child drawing a picture for mum
 
-You MUST return ONLY a valid JSON array. No explanation, no markdown, no code blocks. Just the raw JSON array starting with [ and ending with ].
+Return ONLY a JSON array with exactly 8 objects. Each object should have:
+- pageNumber (1-8)
+- easterEgg: what interest to hide and exactly where in the scene
 
-The array must have exactly 8 objects, each with pageNumber and easterEgg keys. Keep easterEgg descriptions short and simple, under 15 words each. No apostrophes or special characters in the text.
-
-Example of exact format required:
-[{"pageNumber":1,"easterEgg":"a small dinosaur sitting on the windowsill"},{"pageNumber":2,"easterEgg":"a football under the sofa"}]`
+Example format:
+[
+  { "pageNumber": 1, "easterEgg": "a small football tucked behind the Christmas tree" },
+  { "pageNumber": 2, "easterEgg": "a dinosaur toy peeking out from under the blanket" }
+]`
         }
       ]
     });
 
-    let easterEggs = [];
-    try {
-      const rawText = message.content[0].text.trim();
-      const jsonMatch = rawText.match(/\[[\s\S]*\]/);
-      if (jsonMatch) {
-        easterEggs = JSON.parse(jsonMatch[0]);
-      }
-    } catch (parseError) {
-      console.error('Easter egg parse error:', parseError);
-      // Fall back to simple defaults if parsing fails
-      easterEggs = [
-        { pageNumber: 1, easterEgg: `a small ${interests.split(',')[0].trim()} toy near the tree` },
-        { pageNumber: 2, easterEgg: `a ${interests.split(',')[0].trim()} book on the shelf` },
-        { pageNumber: 3, easterEgg: `a ${interests.split(',')[0].trim()} picture on the wall` },
-        { pageNumber: 4, easterEgg: `a ${interests.split(',')[0].trim()} toy in the corner` },
-        { pageNumber: 5, easterEgg: `a ${interests.split(',')[0].trim()} magnet on the fridge` },
-        { pageNumber: 6, easterEgg: `a ${interests.split(',')[0].trim()} poster on the wall` },
-        { pageNumber: 7, easterEgg: `a ${interests.split(',')[0].trim()} toy in the background` },
-        { pageNumber: 8, easterEgg: `a ${interests.split(',')[0].trim()} drawing on the paper` }
-      ];
-    }
+    const rawText = message.content[0].text;
+    const cleanText = rawText
+  .replace(/```json\n?|\n?```/g, '')
+  .replace(/[\u2018\u2019\u201C\u201D]/g, '"')
+  .trim();
+const easterEggs = JSON.parse(cleanText);
 
     res.json({
       success: true,
